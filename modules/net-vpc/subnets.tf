@@ -96,12 +96,14 @@ locals {
 }
 
 resource "google_compute_subnetwork" "subnetwork" {
-  for_each      = local.subnets
-  project       = var.project_id
-  network       = local.network.name
-  name          = each.value.name
-  region        = each.value.region
-  ip_cidr_range = each.value.ip_cidr_range
+  for_each         = local.subnets
+  project          = var.project_id
+  network          = local.network.name
+  name             = each.value.name
+  region           = each.value.region
+  ip_cidr_range    = each.value.ip_cidr_range
+  stack_type       = each.value.ipv6 == null ? "IPV4_ONLY" : "IPV4_IPV6"
+  ipv6_access_type = each.value.ipv6 == null ? null : each.value.ipv6.access_type
   description = (
     each.value.description == null
     ? "Terraform-managed."

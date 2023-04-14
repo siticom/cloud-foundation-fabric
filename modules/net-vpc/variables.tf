@@ -118,6 +118,12 @@ variable "routing_mode" {
   }
 }
 
+variable "enable_ula_internal_ipv6" {
+  description = "Enable VPC network ULA internal IPv6 range"
+  type        = bool
+  default     = false
+}
+
 variable "shared_vpc_host" {
   description = "Enable shared VPC for this project."
   type        = bool

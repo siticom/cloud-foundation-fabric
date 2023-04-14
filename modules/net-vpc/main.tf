@@ -42,6 +42,7 @@ resource "google_compute_network" "network" {
   delete_default_routes_on_create = var.delete_default_routes_on_create
   mtu                             = var.mtu
   routing_mode                    = var.routing_mode
+  enable_ula_internal_ipv6        = var.enable_ula_internal_ipv6
 }
 
 resource "google_compute_network_peering" "local" {
